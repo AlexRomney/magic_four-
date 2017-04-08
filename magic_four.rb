@@ -14,12 +14,18 @@ def welcome
 end
 
 def get_number
+  begin
   puts "\nPut any whole number or type quit when you want to quit:".colorize(:yellow)
   print "> "
-  input = gets.strip
-  exit if input.downcase == 'quit'
-  puts "Alright, watch this!".colorize(:light_blue); sleep 2
-  input.to_i.abs
+    input = gets.strip
+    input.downcase == 'quit' ? exit :
+    input = Integer(input)
+    puts "Alright, watch this!\n".colorize(:light_blue); sleep 1.5
+    input.to_i.abs
+  rescue
+    puts "\nYou have to put a number if you want to see the magic!".colorize(:red)
+    retry
+  end
 end
 
 def magic_number(number)
